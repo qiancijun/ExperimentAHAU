@@ -4,6 +4,7 @@ import com.qiancijun.application.common.Data;
 import com.qiancijun.application.core.chain.CalcuteRequest;
 import com.qiancijun.application.core.chain.Handler;
 import com.qiancijun.application.core.chain.impl.AddHandler;
+import com.qiancijun.application.core.chain.impl.SubtractHandler;
 import com.qiancijun.application.core.observer.Observer;
 import com.qiancijun.application.core.observer.impl.DataObserver;
 
@@ -19,6 +20,8 @@ public class CalcuteProcessor {
 
     private CalcuteProcessor() {
         handler = new AddHandler(); // 职责链的头节点
+        SubtractHandler subtractHandler = new SubtractHandler();
+        handler.setHandler(subtractHandler);
     }
 
     public void process(CalcuteRequest request) {

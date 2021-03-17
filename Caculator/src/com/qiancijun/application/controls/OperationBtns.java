@@ -54,7 +54,6 @@ public class OperationBtns {
             // 第一次按下操作符
             subject.addVal(); // 存入之前输入的值
             // 记录下操作符
-            data.setOperator("+");
             LabelView.getInstance().getResultLabel().setText("0.");
             // 如果之前已经输入过操作符了，先做计算
             if (data.isFirsetOperate()) {
@@ -62,6 +61,22 @@ public class OperationBtns {
                 CalcuteRequest request = new CalcuteRequest(data.getOperator());
                 CalcuteProcessor.getInstance().process(request);
             }
+            data.setOperator("+");
+            data.setFirsetOperate(true);
+            System.out.println(data.getStack());
+        });
+        btns[2].addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            // 第一次按下操作符
+            subject.addVal(); // 存入之前输入的值
+            // 记录下操作符
+            LabelView.getInstance().getResultLabel().setText("0.");
+            // 如果之前已经输入过操作符了，先做计算
+            if (data.isFirsetOperate()) {
+                // 从 Data 中取出上一次的操作符，交给职责链去操作
+                CalcuteRequest request = new CalcuteRequest(data.getOperator());
+                CalcuteProcessor.getInstance().process(request);
+            }
+            data.setOperator("-");
             data.setFirsetOperate(true);
             System.out.println(data.getStack());
         });

@@ -28,15 +28,18 @@ public class AddHandler extends Handler {
             // 执行加法运算
             Deque<Number> stack = data.getStack();
             // 如果 isDouble 为 true 则强转为 Double
-            if (data.isDouble()) {
-                double num1 = (double) stack.pollFirst();
-                double num2 = (double) stack.pollFirst();
-                stack.addLast(num1 + num2);
-            } else {
-                int num1 = (int) stack.pollFirst();
-                int num2 = (int) stack.pollFirst();
-                stack.addLast(num1 + num2);
-            }
+//            if (data.isDouble()) {
+//                double num1 = (double) stack.pollFirst();
+//                double num2 = (double) stack.pollFirst();
+//                stack.addLast(num1 + num2);
+//            } else {
+//                double num1 = (double) stack.pollFirst();
+//                double num2 = (double) stack.pollFirst();
+//                stack.addLast(num1 + num2);
+//            }
+            double num1 = (double) stack.pollFirst();
+            double num2 = (double) stack.pollFirst();
+            stack.addLast(num1 + num2);
             DataObserver.getInstance().change(stack.getLast().toString());
             // 计算完成后清空屏幕上的显示
             LabelView.getInstance().getResultLabel().setText("0.");
@@ -46,8 +49,8 @@ public class AddHandler extends Handler {
         }
     }
 
-    public void setNext(Handler handler) {
-        super.setHandler(handler);
-    }
+//    public void setNext(Handler handler) {
+//        super.setHandler(handler);
+//    }
 
 }
