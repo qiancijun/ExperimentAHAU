@@ -5,7 +5,7 @@ import javafx.application.Application;
 
 /**
  * @author Xu Chun
- * @Desc
+ * @Desc 主启动
  * @Time 2021/3/15 18:47
  */
 

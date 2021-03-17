@@ -1,6 +1,5 @@
 package com.qiancijun.application.controls;
 
-import com.qiancijun.application.config.Style;
 import javafx.scene.control.Button;
 
 /**
@@ -25,11 +24,9 @@ public class OthersBtns {
         btns[5].setText("MS");
         btns[6].setText("M+");
         for (int i = 3; i <= 6; i++) {
-//            btns[i].setStyle(Style.othersBtnStyle1);
             btns[i].getStyleClass().add("othersBtnStyle1");
         }
         for (int i = 0; i <= 2; i++) {
-//            btns[i].setStyle(Style.othersBtnStyle1);
             btns[i].getStyleClass().add("othersBtnStyle2");
         }
     }
