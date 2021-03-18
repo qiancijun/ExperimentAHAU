@@ -6,6 +6,7 @@ import com.qiancijun.application.core.observer.impl.DataObserver;
 import com.qiancijun.application.core.observer.impl.NumericBtnSubject;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 
 
@@ -38,6 +39,7 @@ public class NumericBtns {
     }
 
     private void setClick() {
+        // 点击事件
         btns[11].addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             if (!data.isDouble()) {
                 subject.notify("."); // 通知观察者改变 Data 里的数据，下同

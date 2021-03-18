@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * @author Xu Chun
@@ -20,14 +21,19 @@ public class Data {
     private boolean isFirsetOperate = false; // 是否第一次输入操作符
     private String operator;
     private Deque<Double> stack; // 记录前一次输入的数据
+    private Queue<Double> store;
     public StringBuilder getText() {
         return text;
     }
 
+    public Queue<Double> getStore() {
+        return store;
+    }
 
     private Data() {
         text = new StringBuilder();
         stack = new LinkedList<>();
+        store = new LinkedList<>();
     };
     // 当使用到该方法时，才会创建instance
     public static Data getInstance() {
@@ -47,6 +53,7 @@ public class Data {
     }
 
     public void clean() {
+        isDouble = false;
         text = new StringBuilder();
         LabelView.getInstance().getResultLabel().setText("0.");
     }

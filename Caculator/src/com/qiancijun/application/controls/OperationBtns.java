@@ -64,6 +64,9 @@ public class OperationBtns {
         btns[0].addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             execute("/");
         });
+        btns[5].addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            execute("%");
+        });
         btns[7].addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             if (data.getStack().size() == 0) {
                 return;
@@ -84,6 +87,18 @@ public class OperationBtns {
                 subject.addVal();
             if (data.getStack().size() == 0) return;
             CalcuteRequest request = new CalcuteRequest("sqrt");
+            CalcuteProcessor.getInstance().process(request);
+            label.setText(data.getStack().getLast().toString());
+            System.out.println(data.getStack());
+        });
+        btns[6].addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            if (data.isFirsetOperate()) {
+                return;
+            }
+            if (data.getText().length() != 0)
+                subject.addVal();
+            if (data.getStack().size() == 0) return;
+            CalcuteRequest request = new CalcuteRequest("reci");
             CalcuteProcessor.getInstance().process(request);
             label.setText(data.getStack().getLast().toString());
             System.out.println(data.getStack());

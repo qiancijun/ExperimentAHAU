@@ -18,17 +18,22 @@ public class CalcuteProcessor {
     public static volatile CalcuteProcessor instance;
 
     private CalcuteProcessor() {
-        handler = new AddHandler(); // 职责链的头节点
+        // 职责链
+        handler = new AddHandler();
         SubtractHandler subtractHandler = new SubtractHandler();
         handler.setHandler(subtractHandler);
         MultiplyHandler multiplyHandler = new MultiplyHandler();
         subtractHandler.setHandler(multiplyHandler);
         DivideHandler divideHandler = new DivideHandler();
         multiplyHandler.setHandler(divideHandler);
+        ModHandler modHandler = new ModHandler();
+        divideHandler.setHandler(modHandler);
         SqrtHandler sqrtHandler = new SqrtHandler();
-        divideHandler.setHandler(sqrtHandler);
+        modHandler.setHandler(sqrtHandler);
+        ReciHandler reciHandler = new ReciHandler();
+        sqrtHandler.setHandler(reciHandler);
         DefaultHandler defaultHandler = new DefaultHandler();
-        sqrtHandler.setHandler(defaultHandler);
+        reciHandler.setHandler(defaultHandler);
     }
 
     public void process(CalcuteRequest request) {
