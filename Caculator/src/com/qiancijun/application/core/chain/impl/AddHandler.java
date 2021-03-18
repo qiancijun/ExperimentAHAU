@@ -26,7 +26,7 @@ public class AddHandler extends Handler {
     public void handlerRequest(CalcuteRequest request) {
         if ("+".equals(request.getType())) {
             // 执行加法运算
-            Deque<Number> stack = data.getStack();
+            Deque<Double> stack = data.getStack();
             // 如果 isDouble 为 true 则强转为 Double
 //            if (data.isDouble()) {
 //                double num1 = (double) stack.pollFirst();
@@ -37,6 +37,7 @@ public class AddHandler extends Handler {
 //                double num2 = (double) stack.pollFirst();
 //                stack.addLast(num1 + num2);
 //            }
+            if (stack.size() < 2) return;
             double num1 = (double) stack.pollFirst();
             double num2 = (double) stack.pollFirst();
             stack.addLast(num1 + num2);

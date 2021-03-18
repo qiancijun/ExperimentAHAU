@@ -40,14 +40,17 @@ public class DataObserver implements Observer {
         Label labelView = LabelView.getInstance().getResultLabel();
         labelView.setText("0.");
         String val = data.getText().toString();
-        Deque<Number> stack = data.getStack();
-        if (data.isDouble()) {
-            Double num = Double.parseDouble(val);
-            stack.addLast(num);
-        } else {
-            Integer num = Integer.parseInt(val);
-            stack.addLast(num);
-        }
+        if ("".equals(val)) return;
+        Deque<Double> stack = data.getStack();
+//        if (data.isDouble()) {
+//            Double num = Double.parseDouble(val);
+//            stack.addLast(num);
+//        } else {
+//            Integer num = Integer.parseInt(val);
+//            stack.addLast(num);
+//        }
+        Double num = Double.parseDouble(val);
+        stack.addLast(num);
         // 添加完之后，重置显示的文本和 isDouble 状态
         data.reset();
     }

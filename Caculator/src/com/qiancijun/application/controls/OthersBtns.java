@@ -1,6 +1,8 @@
 package com.qiancijun.application.controls;
 
+import com.qiancijun.application.common.Data;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 
 /**
  * @author Xu Chun
@@ -10,6 +12,8 @@ import javafx.scene.control.Button;
 
 public class OthersBtns {
     private Button[] btns;
+
+    private Data data = Data.getInstance();
 
     public OthersBtns() {
         btns = new Button[7];
@@ -29,6 +33,17 @@ public class OthersBtns {
         for (int i = 0; i <= 2; i++) {
             btns[i].getStyleClass().add("othersBtnStyle2");
         }
+        setClick();
+    }
+
+    private void setClick() {
+        // 清空
+        btns[1].addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            data.renew();
+        });
+        btns[0].addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            data.deleteText();
+        });
     }
 
     public Button[] getBtns() {

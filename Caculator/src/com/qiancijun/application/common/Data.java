@@ -19,10 +19,11 @@ public class Data {
     private boolean isDouble = false;
     private boolean isFirsetOperate = false; // 是否第一次输入操作符
     private String operator;
-    private Deque<Number> stack; // 记录前一次输入的数据
+    private Deque<Double> stack; // 记录前一次输入的数据
     public StringBuilder getText() {
         return text;
     }
+
 
     private Data() {
         text = new StringBuilder();
@@ -50,6 +51,21 @@ public class Data {
         LabelView.getInstance().getResultLabel().setText("0.");
     }
 
+    public void renew() {
+        text = new StringBuilder();
+        isDouble = false;
+        LabelView.getInstance().getResultLabel().setText("0.");
+        stack.clear();
+    }
+
+    public void deleteText() {
+        if (text.length() == 0) {
+            return;
+        }
+        text.deleteCharAt(text.length() - 1);
+        LabelView.getInstance().getResultLabel().setText(text.toString());
+    }
+
     public void changeText(String val) {
         this.text.append(val);
     }
@@ -62,7 +78,7 @@ public class Data {
         isDouble = aDouble;
     }
 
-    public Deque<Number> getStack() {
+    public Deque<Double> getStack() {
         return stack;
     }
 

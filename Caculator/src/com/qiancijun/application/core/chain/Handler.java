@@ -1,5 +1,7 @@
 package com.qiancijun.application.core.chain;
 
+import com.qiancijun.application.common.Data;
+
 /**
  * @author Xu Chun
  * @Desc 职责链
@@ -9,8 +11,12 @@ package com.qiancijun.application.core.chain;
 public abstract class Handler {
     private Handler handler; // 下一个处理者
     private String name;
-
+    private Data data = Data.getInstance();
     public abstract void handlerRequest(CalcuteRequest request);
+
+    public Data getData() {
+        return data;
+    }
 
     public Handler getHandler() {
         return handler;
