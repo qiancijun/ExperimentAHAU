@@ -42,7 +42,7 @@ public class CalcuteProcessor {
 
     public static CalcuteProcessor getInstance() {
         if (instance == null) {
-            synchronized (Data.class) {
+            synchronized (CalcuteProcessor.class) {
                 if (instance == null) {
                     instance = new CalcuteProcessor();
                 }
