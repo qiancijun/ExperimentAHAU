@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qiancijun.notebook.controller.OperationController">
+   <top>
+      <ToolBar id="window" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: rgb(60,60,60);">
+        <items>
+            <HBox alignment="CENTER_RIGHT">
+               <children>
+                  <Button fx:id="close" mnemonicParsing="false" onAction="#closeWindow" prefHeight="40.0" style="-fx-background-color: #00000000; -fx-font-size: 16px;" textFill="WHITE" />
+                  <Button fx:id="maximize" mnemonicParsing="false" onAction="#maximizeWindow" prefHeight="40.0" style="-fx-background-color: #00000000; -fx-font-size: 16px;" textFill="WHITE" />
+                  <Button fx:id="minimize" mnemonicParsing="false" onAction="#minimizeWindow" prefHeight="40.0" style="-fx-background-color: #00000000; -fx-font-size: 16px;" textFill="WHITE" />
+                  <MenuButton contentDisplay="TOP" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: #00000000;" text="选项" textFill="WHITE">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Action 1" />
+                      <MenuItem mnemonicParsing="false" text="Action 2" />
+                        <Menu mnemonicParsing="false" text="Unspecified Menu">
+                          <items>
+                            <MenuItem mnemonicParsing="false" text="Action 1" />
+                          </items>
+                        </Menu>
+                    </items>
+                  </MenuButton>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </HBox>
+        </items>
+      </ToolBar>
+   </top>
+   <center>
+      <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" fx:id="scrollPane">
+         <content>
+            <TextArea cacheShape="false" centerShape="false" scaleShape="false" style="-fx-control-inner-background: rgb(30,30,30); -fx-font-size: 20px;" fx:id="textArea"/>
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>
