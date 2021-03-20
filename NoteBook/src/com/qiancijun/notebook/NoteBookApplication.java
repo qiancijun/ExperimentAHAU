@@ -1,5 +1,7 @@
 package com.qiancijun.notebook;
 
+import com.qiancijun.notebook.controller.OperationController;
+import com.qiancijun.notebook.core.FileUtil;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -10,12 +12,16 @@ import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToolBar;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.IOException;
 import java.net.URL;
 
 /**
@@ -30,18 +36,6 @@ public class NoteBookApplication extends Application {
     private Button close, minimize, maximize;
     private ToolBar window;
     private static Stage stage;
-    private boolean isRight;// 是否处于右边界调整窗口状态
-    private boolean isBottomRight;// 是否处于右下角调整窗口状态
-    private boolean isBottom;// 是否处于下边界调整窗口状态
-    private double RESIZE_WIDTH = 3.00;
-    private double MIN_WIDTH = 400.00;
-    private double MIN_HEIGHT = 300.00;
-    private double xOffset = 0, yOffset = 0;//自定义dialog移动横纵坐标
-    private double x = 0.00;
-    private double y = 0.00;
-    private double width = 0.00;
-    private double height = 0.00;
-    private boolean isMax = false;
     @Override
     public void start(Stage stage) throws Exception {
 //        BorderPane borderPane = new BorderPane(); // 主界面布局
@@ -51,13 +45,33 @@ public class NoteBookApplication extends Application {
         URL url = fx.getClassLoader().getResource("com/qiancijun/notebook/main.fxml");
         fx.setLocation(url);
         root = fx.load();
-
-
+        OperationController controller = fx.getController();
 
         initView();
         setClick();
 
         Scene scene = new Scene(root);
+
+
+        // 快捷键
+        KeyCodeCombination kccb = new KeyCodeCombination(KeyCode.S, KeyCombination.SHORTCUT_DOWN);
+        scene.getAccelerators().put(kccb, () -> {
+            try {
+                controller.sf();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        KeyCodeCombination kccb2 = new KeyCodeCombination(KeyCode.O, KeyCombination.SHORTCUT_DOWN);
+        scene.getAccelerators().put(kccb2, () -> {
+            try {
+                controller.of();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
         stage.initStyle(StageStyle.TRANSPARENT);
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
         stage.setX(primaryScreenBounds.getMinX());
@@ -66,6 +80,8 @@ public class NoteBookApplication extends Application {
         stage.setHeight(primaryScreenBounds.getHeight());
         stage.setScene(scene);
         stage.show();
+
+
     }
 
     private void initView() {
@@ -73,15 +89,6 @@ public class NoteBookApplication extends Application {
     }
 
     private void setClick() {
-//        minimize.setOnAction(event -> mainStage.setIconified(true));
-//        maximize.setOnAction(event -> {
-//            Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-//            mainStage.setX(primaryScreenBounds.getMinX());
-//            mainStage.setY(primaryScreenBounds.getMinY());
-//            mainStage.setWidth(primaryScreenBounds.getWidth());
-//            mainStage.setHeight(primaryScreenBounds.getHeight());
-//        });
-//        close.setOnAction((event)->System.exit(0));
         DragWindowHandler dragWindowHandler = new DragWindowHandler(stage);
 
         window.setOnMousePressed(dragWindowHandler);
@@ -116,5 +123,4 @@ public class NoteBookApplication extends Application {
     public static Stage getStage() {
         return stage;
     }
-
 }

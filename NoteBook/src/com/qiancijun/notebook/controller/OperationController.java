@@ -1,22 +1,28 @@
 package com.qiancijun.notebook.controller;
 
 import com.qiancijun.notebook.NoteBookApplication;
+import com.qiancijun.notebook.core.FileUtil;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Cursor;
-import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -44,8 +50,14 @@ public class OperationController implements Initializable {
     private boolean isRight;// 是否处于右边界调整窗口状态
     private boolean isBottomRight;// 是否处于右下角调整窗口状态
     private boolean isBottom;// 是否处于下边界调整窗口状态
+
+    private File file;
+    private String txt;
     @FXML
-    private Button minimize, maximize, close;
+    private Button minimize, maximize, close, open, save;
+
+    @FXML
+    private MenuItem newFile, saveFile;
 
     @FXML
     private BorderPane root;
@@ -59,8 +71,16 @@ public class OperationController implements Initializable {
     @FXML
     private ScrollPane scrollPane;
 
+    @FXML
+    private Label easycode;
+
+    @FXML
+    private VBox vBox;
+
     public OperationController() {
     }
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -68,20 +88,16 @@ public class OperationController implements Initializable {
         ImageView bkg2 = new ImageView("com/qiancijun/notebook/img/最大化.png");
         ImageView bkg3 = new ImageView("com/qiancijun/notebook/img/最小化.png");
         ImageView bkg4 = new ImageView("com/qiancijun/notebook/img/书本.png");
+        ImageView bkg5 = new ImageView("com/qiancijun/notebook/img/新建.png");
+        ImageView bkg6 = new ImageView("com/qiancijun/notebook/img/保存.png");
         close.setGraphic(bkg1);
         maximize.setGraphic(bkg2);
         minimize.setGraphic(bkg3);
+        open.setGraphic(bkg5);
+        save.setGraphic(bkg6);
         textArea.prefHeightProperty().bind(scrollPane.heightProperty());
         textArea.prefWidthProperty().bind(root.widthProperty());
 
-//        root.setOnMousePressed(event -> {
-//            event.consume();
-//            xOffset = event.getSceneX();
-//            yOffset = event.getSceneY();
-//        });
-//
-//        root.setOnMouseDragged(this::mouseDraggedHandle);
-//        root.setOnMouseMoved(this::mouseMoveHandle);
         stage.xProperty().addListener(new ChangeListener<Number>() {
 
             @Override
@@ -264,4 +280,53 @@ public class OperationController implements Initializable {
         System.exit(0);
     }
 
+    @FXML
+    private void openFile() throws IOException {
+        of();
+    }
+
+    public void of() throws IOException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("打开文件");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("TXT", "*.txt"),
+                new FileChooser.ExtensionFilter("md", "*.md"),
+                new FileChooser.ExtensionFilter("c", "*.c"),
+                new FileChooser.ExtensionFilter("cpp", "*.cpp"),
+                new FileChooser.ExtensionFilter("Java", "*.java")
+        );
+        file = fileChooser.showOpenDialog(stage);
+        if (file == null) return;
+        txt = FileUtil.readFile(file);
+        easycode.setText(file.getAbsolutePath());
+        textArea.setText(txt);
+    }
+
+    @FXML
+    private void saveFile() throws IOException {
+        sf();
+    }
+
+    public void sf() throws IOException {
+        if (file == null || txt == null) {
+            return;
+        }
+        FileUtil.saveFile(file, textArea.getText());
+    }
+
+    @FXML
+    private void createFile() {
+        textArea.setText("");
+        easycode.setText("EasyCode");
+    }
+
+    @FXML
+    private void save() throws IOException {
+        FileChooser fileChooser1 = new FileChooser();
+        fileChooser1.setTitle("保存文件");
+        File file = fileChooser1.showSaveDialog(stage);
+        if (file != null) {
+            FileUtil.saveFile(file, textArea.getText());
+        }
+    }
 }
