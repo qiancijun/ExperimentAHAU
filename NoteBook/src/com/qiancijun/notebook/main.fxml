@@ -34,7 +34,7 @@
       </ToolBar>
    </top>
    <center>
-      <ScrollPane fx:id="scrollPane" style="-fx-hbar-policy: never; -fx-vbar-policy: never;" BorderPane.alignment="CENTER">
+      <ScrollPane fx:id="scrollPane"  BorderPane.alignment="CENTER">
          <content>
             <TextArea fx:id="textArea" style="-fx-control-inner-background: rgb(30,30,30); -fx-font-size: 20px; -fx-border-color: rgb(30,30,30);" />
          </content>

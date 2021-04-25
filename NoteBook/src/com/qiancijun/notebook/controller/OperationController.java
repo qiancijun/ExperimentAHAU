@@ -95,8 +95,8 @@ public class OperationController implements Initializable {
         minimize.setGraphic(bkg3);
         open.setGraphic(bkg5);
         save.setGraphic(bkg6);
-        textArea.prefHeightProperty().bind(scrollPane.heightProperty());
-        textArea.prefWidthProperty().bind(root.widthProperty());
+        textArea.prefHeightProperty().bind(scrollPane.heightProperty().subtract(2));
+        textArea.prefWidthProperty().bind(scrollPane.widthProperty().subtract(2));
 
         stage.xProperty().addListener(new ChangeListener<Number>() {
 

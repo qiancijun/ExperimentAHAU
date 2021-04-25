@@ -36,6 +36,11 @@ public class NoteBookApplication extends Application {
     private Button close, minimize, maximize;
     private ToolBar window;
     private static Stage stage;
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     @Override
     public void start(Stage stage) throws Exception {
 //        BorderPane borderPane = new BorderPane(); // 主界面布局

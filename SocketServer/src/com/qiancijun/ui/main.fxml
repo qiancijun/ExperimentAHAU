@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qiancijun.controller.Controller">
+   <children>
+      <HBox layoutX="4.0" layoutY="-6.0" prefHeight="400.0" prefWidth="650.0">
+         <children>
+            <FlowPane prefHeight="400.0" prefWidth="300.0">
+               <children>
+                  <FlowPane prefHeight="50.0" prefWidth="300.0">
+                     <children>
+                        <Label prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #fff; -fx-font-size: 16px;" text="端口号">
+                           <FlowPane.margin>
+                              <Insets left="20.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <TextField fx:id="serverPort" prefHeight="30.0" prefWidth="100.0">
+                           <FlowPane.margin>
+                              <Insets left="10.0" />
+                           </FlowPane.margin>
+                        </TextField>
+                        <Button fx:id="serverBegin" mnemonicParsing="false" prefHeight="40.0" text="开始监听">
+                           <FlowPane.margin>
+                              <Insets left="10.0" top="5.0" />
+                           </FlowPane.margin>
+                        </Button>
+                     </children>
+                  </FlowPane>
+                  <FlowPane prefHeight="150.0" prefWidth="300.0">
+                     <children>
+                        <Label prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 16px;" text="接收区">
+                           <FlowPane.margin>
+                              <Insets left="20.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <TextArea fx:id="serverReceive" prefHeight="150.0" prefWidth="230.0" />
+                     </children></FlowPane>
+                   <FlowPane prefHeight="150.0" prefWidth="300.0">
+                       <children>
+                           <Label prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 16px;" text="发送区">
+                               <FlowPane.margin>
+                                   <Insets left="20.0" />
+                               </FlowPane.margin>
+                           </Label>
+                           <TextArea fx:id="serverPush" prefHeight="150.0" prefWidth="230.0" />
+                       </children>
+                     <FlowPane.margin>
+                        <Insets top="25.0" />
+                     </FlowPane.margin></FlowPane>
+                  <Button fx:id="serverSend" mnemonicParsing="false" text="Button">
+                     <FlowPane.margin>
+                        <Insets left="20.0" />
+                     </FlowPane.margin>
+                  </Button>
+               </children>
+            </FlowPane>
+            <FlowPane layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="300.0">
+               <children>
+                  <FlowPane prefHeight="50.0" prefWidth="300.0">
+                     <children>
+                        <Label prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #fff; -fx-font-size: 16px;" text="端口号">
+                           <FlowPane.margin>
+                              <Insets left="20.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <TextField fx:id="clientPort" prefHeight="30.0" prefWidth="100.0">
+                           <FlowPane.margin>
+                              <Insets left="10.0" />
+                           </FlowPane.margin>
+                        </TextField>
+                        <Button fx:id="clientBegin" mnemonicParsing="false" prefHeight="40.0" text="开始监听">
+                           <FlowPane.margin>
+                              <Insets left="10.0" top="5.0" />
+                           </FlowPane.margin>
+                        </Button>
+                     </children>
+                  </FlowPane>
+                  <FlowPane prefHeight="150.0" prefWidth="300.0">
+                     <children>
+                        <Label prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 16px;" text="接收区">
+                           <FlowPane.margin>
+                              <Insets left="20.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <TextArea fx:id="clientReceive" prefHeight="150.0" prefWidth="230.0" />
+                     </children>
+                  </FlowPane>
+                  <FlowPane prefHeight="150.0" prefWidth="300.0">
+                     <children>
+                        <Label prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 16px;" text="发送区">
+                           <FlowPane.margin>
+                              <Insets left="20.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <TextArea fx:id="clientPush" prefHeight="150.0" prefWidth="230.0" />
+                        <Button fx:id="clientSend" mnemonicParsing="false" text="Button">
+                           <FlowPane.margin>
+                              <Insets left="20.0" />
+                           </FlowPane.margin>
+                        </Button>
+                     </children>
+                     <FlowPane.margin>
+                        <Insets top="25.0" />
+                     </FlowPane.margin>
+                  </FlowPane>
+               </children>
+            </FlowPane>
+         </children></HBox>
+   </children>
+</AnchorPane>

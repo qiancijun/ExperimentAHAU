@@ -27,6 +27,7 @@ public class CalcutorApplication extends Application {
     private Button[] numericBtns, operationBtns, othersBtns;
     private Data data;
 
+
     @Override
     public void init() throws Exception {
         // 初始化需要的数据，写逻辑时候用
